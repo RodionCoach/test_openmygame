@@ -1,0 +1,17 @@
+/* Modal overlay (for fallback if not using Tailwind) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.group-and {
+  background: #bfdbfe;
+}
+.group-or {
+  background: #bbf7d0;
+} 
