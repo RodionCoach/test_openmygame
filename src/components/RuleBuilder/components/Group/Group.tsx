@@ -102,7 +102,7 @@ const Group: React.FC<GroupProps> = ({
         <Button
           className="ml-2 px-2 py-1 border border-red-400 text-red-600 bg-white"
           onClick={onDelete}
-          disabled={isLocked || isInitialGroup}
+          disabled={isLocked || isDisabled || isInitialGroup}
         >
           x
         </Button>
@@ -144,62 +144,58 @@ const Group: React.FC<GroupProps> = ({
                 </SortableItem>
               ))}
             </SortableContext>
-            <div className="flex flex-wrap gap-2 mt-2">
-              <Button
-                className="px-2 py-1 border border-blue-400 text-blue-600 bg-white"
-                onClick={() =>
-                  onChange({
-                    ...group,
-                    logicType: group.logicType === "AND" ? "OR" : "AND",
-                  })
-                }
-                disabled={isLocked || isDisabled || isInitialGroup}
-              >
-                {group.logicType}
-              </Button>
-              <Button
-                className="px-2 py-1 border border-gray-400 text-gray-700 bg-white"
-                onClick={() =>
-                  onChange({ ...group, collapsed: !group.collapsed })
-                }
-                disabled={isInitialGroup}
-              >
-                {group.collapsed ? "Expand" : "Collapse"}
-              </Button>
-              <Button
-                className="px-2 py-1 border border-yellow-400 text-yellow-700 bg-white"
-                onClick={() => onChange({ ...group, locked: !group.locked })}
-                disabled={isInitialGroup}
-              >
-                {group.locked ? "Unlock" : "Lock"}
-              </Button>
-              <Button
-                className="px-2 py-1 border border-gray-500 text-gray-700 bg-white"
-                onClick={() =>
-                  onChange({ ...group, disabled: !group.disabled })
-                }
-                disabled={isInitialGroup}
-              >
-                {group.disabled ? "Enable" : "Disable"}
-              </Button>
-              <Button
-                className="px-2 py-1 border border-blue-400 text-blue-600 bg-white"
-                onClick={handleAddFilter}
-                disabled={isLocked || isDisabled}
-              >
-                Add Filter
-              </Button>
-              <Button
-                className="px-2 py-1 border border-green-400 text-green-700 bg-white"
-                onClick={handleAddGroup}
-                disabled={isLocked || isDisabled}
-              >
-                Add Group
-              </Button>
-            </div>
           </div>
         </DndContext>
       )}
+      <div className="flex flex-wrap gap-2 mt-2">
+        <Button
+          className="px-2 py-1 border border-blue-400 text-blue-600 bg-white"
+          onClick={() =>
+            onChange({
+              ...group,
+              logicType: group.logicType === "AND" ? "OR" : "AND",
+            })
+          }
+          disabled={isLocked || isDisabled || isInitialGroup}
+        >
+          {group.logicType}
+        </Button>
+        <Button
+          className="px-2 py-1 border border-gray-400 text-gray-700 bg-white"
+          onClick={() => onChange({ ...group, collapsed: !group.collapsed })}
+          disabled={isLocked || isDisabled || isInitialGroup}
+        >
+          {group.collapsed ? "Expand" : "Collapse"}
+        </Button>
+        <Button
+          className="px-2 py-1 border border-yellow-400 text-yellow-700 bg-white"
+          onClick={() => onChange({ ...group, locked: !group.locked })}
+          disabled={isDisabled || isInitialGroup}
+        >
+          {group.locked ? "Unlock" : "Lock"}
+        </Button>
+        <Button
+          className="px-2 py-1 border border-gray-500 text-gray-700 bg-white"
+          onClick={() => onChange({ ...group, disabled: !group.disabled })}
+          disabled={isLocked || isInitialGroup}
+        >
+          {group.disabled ? "Enable" : "Disable"}
+        </Button>
+        <Button
+          className="px-2 py-1 border border-blue-400 text-blue-600 bg-white"
+          onClick={handleAddFilter}
+          disabled={isLocked || isDisabled || group.collapsed}
+        >
+          Add Filter
+        </Button>
+        <Button
+          className="px-2 py-1 border border-green-400 text-green-700 bg-white"
+          onClick={handleAddGroup}
+          disabled={isLocked || isDisabled || group.collapsed}
+        >
+          Add Group
+        </Button>
+      </div>
       <ModalEditName
         isOpen={modalIsOpen}
         initialName={group.name}
