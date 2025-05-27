@@ -1,11 +1,11 @@
-// Types for RuleBuilder
+import { fields, operators } from "../components/RuleBuilder/constants";
 export type LogicType = 'AND' | 'OR';
 
 export interface Filter {
   id: string;
   type: 'filter';
-  field: string;
-  operator: 'equals' | 'not equals' | 'is after' | 'is before';
+  field: typeof fields[number];
+  operator: typeof operators[number];
   value: string;
   disabled?: boolean;
 }
