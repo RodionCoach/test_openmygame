@@ -19,7 +19,7 @@ const Filter: React.FC<FilterProps> = ({
 }) => {
   return (
     <div
-      className={`flex items-center gap-2 my-1 p-2 rounded border ${
+      className={`flex flex-wrap items-center gap-2 my-1 p-2 rounded border ${
         disabled ? "bg-gray-100 opacity-60" : "bg-white"
       }`}
     >
