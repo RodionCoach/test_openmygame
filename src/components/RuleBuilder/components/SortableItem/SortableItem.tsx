@@ -25,7 +25,7 @@ const SortableItem: React.FC<SortableItemProps> = ({ id, children }) => {
       <Button
         {...attributes}
         {...listeners}
-        className="absolute right-0 top-0 bottom-0 w-4 my-1 mr-1 rounded-r bg-gray-400 hover:opacity-60 hover:cursor-move z-0"
+        className="absolute right-0 top-0 bottom-0 w-4 my-1 mr-1 rounded-r bg-gray-400 hover:opacity-60 hover:cursor-move z-0 touch-none"
       />
     </div>
   );
